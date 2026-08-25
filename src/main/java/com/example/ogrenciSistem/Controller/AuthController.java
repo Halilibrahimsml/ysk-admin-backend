@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:4200") // Angular'dan gelen isteklere izin veriyoruz
+@CrossOrigin(origins = "https://ysk-admin-frontend.vercel.app")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
