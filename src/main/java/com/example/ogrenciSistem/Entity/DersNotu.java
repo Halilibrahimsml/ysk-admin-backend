@@ -1,6 +1,8 @@
 package com.example.ogrenciSistem.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.Data;
 
 @Entity
@@ -22,15 +24,20 @@ public class DersNotu {
     @JoinColumn(name = "ders_id", nullable = false)
     private Ders ders;
 
-    // 3. Not Bilgileri
+    // 3. Not Bilgileri (GÜVENLİK DUVARI EKLENDİ)
+
+    @Min(value = 0, message = "Vize notu 0'dan küçük olamaz")
+    @Max(value = 100, message = "Vize notu 100'den büyük olamaz")
     private Double vizeNotu;
+
+    @Min(value = 0, message = "Final notu 0'dan küçük olamaz")
+    @Max(value = 100, message = "Final notu 100'den büyük olamaz")
     private Double finalNotu;
 
     // Bunları sonradan otomatik hesaplatacağız ama şimdilik tabloda bulunsun
     private Double ortalama;
     private String harfNotu; // Örn: AA, CB, FF
     private String durum;    // Örn: Geçti, Kaldı
-    // ... (yukarıdaki id, ogrenci, ders tanımlamaları duruyor)
 
     // Bu metod veritabanına yeni kayıt eklenirken veya güncellenirken OTOMATİK çalışır!
     @PrePersist
